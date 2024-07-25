@@ -14,5 +14,9 @@
     "@nuxt/ui": "^2.17.0",
     "@nuxtjs/tailwindcss": "^6.12.1",
     "nuxt": "^3.12.4"
+  },
+  "dependencies": {
+    "kafkajs": "^2.2.4",
+    "node-random-name": "^1.0.1"
   }
 }
