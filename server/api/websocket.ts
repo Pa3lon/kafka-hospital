@@ -1,26 +1,14 @@
 import KafkaConsumer from "@/server/utils/kafkaConsumer";
+import TopicGroups from "@/const/TopicGroups";
 
-let topicGroups = [
-  {
-    name: "hospital.patients-waiting",
-    consumer: null,
-  },
-];
+let topicGroups = TopicGroups;
 
 export default defineWebSocketHandler({
-  open(peer) {
-    console.log("open", peer.id);
-  },
-  close(peer) {
-    console.log("close", peer.id);
-  },
-  error(peer, error) {
-    console.log("error", peer.id, error);
-  },
   async message(peer, message) {
     const topic = message.text();
-    const topicGroup = topicGroups.find((group) => group.name === topic);
+    const topicGroup = TopicGroups.find((group) => group.name === topic);
     if (!topicGroup) return;
+
     if (topicGroup.consumer) {
       console.log("Adding subscriber to existing consumer");
       topicGroup.consumer.subscribers = [
@@ -34,8 +22,13 @@ export default defineWebSocketHandler({
       consumer.start();
       topicGroup.consumer = consumer;
     }
-    topicGroups = topicGroups.map((group) =>
+
+    topicGroups = TopicGroups.map((group) =>
       group.name === topic ? topicGroup : group
     );
+  },
+
+  error(peer, error) {
+    console.log("error", peer.id, error);
   },
 });

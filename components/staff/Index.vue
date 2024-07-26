@@ -1,4 +1,4 @@
 <template>
-  <div>Staff</div>
+  <StaffFacilitators />
 </template>
 <script setup></script>

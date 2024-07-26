@@ -3,6 +3,12 @@ import kafkaConfig from "./kafkaConfig";
 const config = kafkaConfig();
 
 export default class KafkaConsumer {
+  private topic: string;
+  private group: string;
+  private subscribers: any[];
+  private fromBeginning: boolean;
+  private connection: any;
+
   constructor(
     topic: string,
     group: string,
@@ -42,27 +48,3 @@ export default class KafkaConsumer {
     await this.connection.disconnect();
   }
 }
-
-/*
-export default async function (
-  group: string,
-  topic: string,
-  subscribers: any[],
-  fromBeginning = true
-) {
-  const cons = kafka.consumer({ groupId: group });
-  await cons.connect();
-  await cons.subscribe({ topic, fromBeginning: fromBeginning });
-
-  await cons.run({
-    eachMessage: async ({ topic, partition, message }) => {
-      const kafkaMessage = {
-        partition,
-        offset: message.offset,
-        value: message.value.toString(),
-      };
-      console.log(kafkaMessage);
-    },
-  });
-}
-*/
