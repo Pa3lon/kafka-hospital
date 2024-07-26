@@ -16,6 +16,9 @@
     "nuxt": "^3.12.4"
   },
   "dependencies": {
+    "@vueuse/core": "^10.11.0",
+    "@vueuse/nuxt": "^10.11.0",
+    "engine.io": "^6.6.0",
     "kafkajs": "^2.2.4",
     "node-random-name": "^1.0.1"
   }
