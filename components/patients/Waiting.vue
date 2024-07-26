@@ -90,6 +90,7 @@ const stopGenerator = () => {
 const generatePatient = () =>
   $fetch("/api/patients/create", {
     method: "POST",
+    body: JSON.stringify({ topic: "hospital.patients-waiting" }),
   });
 </script>
 <style>

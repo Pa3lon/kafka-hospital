@@ -1,5 +1,5 @@
 <script setup>
-const tabSelected = useState("tab", () => 1);
+const tabSelected = useState("tab", () => 0);
 const items = [{ label: "Patients" }, { label: "Staff" }, { label: "Rooms" }];
 </script>
 
